@@ -1,0 +1,48 @@
+<!-- Open the modal using ID.showModal() method -->
+<button (click)="openModal()" class="btn">open modal</button>
+<dialog #newBlogModal class="modal">
+  <div class="modal-box">
+    <div class="flex justify-between">
+      <h3 class="font-bold text-lg">Provide Blog details!</h3>
+      <label (click)="closeModal()" class="btn text-lg font-bold">x</label>
+    </div>
+
+    <form class="card-body" (ngSubmit)="onSubmit()" #blodData="ngForm">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Title</span>
+        </label>
+        <input
+          type="text"
+          placeholder="text"
+          class="input input-bordered"
+          required
+          ngModel
+          name="title"
+          #title="ngModel"
+        />
+        <p *ngIf="!title.valid && title.touched" class="text-red-500 mt-1 text-xs italic">Please provide a title.</p>
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Description</span>
+        </label>
+        <textarea
+          type="text"
+          placeholder="description"
+          class="input input-bordered"
+          required
+          ngModel
+          name="description"
+          #description="ngModel"
+        ></textarea>
+        <p *ngIf="!description.valid && description.touched" class="text-red-500 mt-1 text-xs italic">Please provide a description.</p>
+      </div>
+      <div class="form-control mt-6">
+        <button type="submit" [disabled]="!blodData.valid" class="btn btn-primary">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</dialog>
