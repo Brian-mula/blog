@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AllBlogsService } from '../services/all-blogs.service';
 import { BlogItemComponent } from "./blog-item/blog-item.component";
+import { NewBlogComponent } from "./new-blog/new-blog.component";
 
 
 @Component({
@@ -9,7 +11,7 @@ import { BlogItemComponent } from "./blog-item/blog-item.component";
     standalone: true,
     templateUrl: './blogs.component.html',
     styleUrl: './blogs.component.css',
-    imports: [BlogItemComponent,CommonModule]
+    imports: [BlogItemComponent, CommonModule, NewBlogComponent,FormsModule]
 })
 export class BlogsComponent implements OnInit{
     blogs:{title:string,description:string}[] = [];
