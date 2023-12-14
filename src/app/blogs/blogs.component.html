@@ -1,3 +1,6 @@
 <div class="grid grid-cols-3 gap-8 mt-4 mx-5">
-    <app-blog-item></app-blog-item>
+    <div *ngFor="let blog of blogs">
+        <app-blog-item  [receivedBlog]="blog" ></app-blog-item>
+    </div>
+   
 </div>
