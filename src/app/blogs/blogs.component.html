@@ -1,6 +1,8 @@
 <div class="flex justify-end">
     <app-new-blog></app-new-blog>
 </div>
+<div *ngIf="isFetching" >Loading...</div>
+<div *ngIf="blogs.length < 1 && !isFetching" >No blogs found</div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 mx-5">
     <div *ngFor="let blog of blogs">
         <app-blog-item  [receivedBlog]="blog" ></app-blog-item>
