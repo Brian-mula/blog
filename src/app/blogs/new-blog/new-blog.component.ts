@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Blog } from '../blog.model';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-new-blog',
@@ -18,7 +19,7 @@ export class NewBlogComponent {
 
   //newBlog:Blog = {} as Blog;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private postService:PostsService) {}
 
   openModal() {
     this.newModal.nativeElement.showModal();
@@ -32,14 +33,8 @@ export class NewBlogComponent {
       title: this.bData.value.title,
       description: this.bData.value.description,
     };
-    this.http
-      .post(
-        'https://blog-7f459-default-rtdb.firebaseio.com/blogs.json',
-        newBlog
-      )
-      .subscribe((responseData) => {
-        console.log(responseData);
-      });
+    this.postService.createAndStorePost(newBlog);
+    
     console.log(newBlog);
   }
 }
