@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoadingSpinnerComponent } from "../shared/loading-spinner/loading-spinner.component";
 import { AuthResponseData, AuthService } from './auth.service';
@@ -14,7 +15,8 @@ import { AuthResponseData, AuthService } from './auth.service';
 })
 export class AuthComponent {
   constructor(
-     private authService: AuthService
+     private authService: AuthService,
+     private router:Router
   ) {}
 
   isLoginMode:boolean = true;
@@ -43,6 +45,7 @@ export class AuthComponent {
     authObs.subscribe({
       next: responseData => {
         this.isLoading = false;
+        this.router.navigate(['/']);
         console.log(responseData);
       },
       error: errorRes => {
